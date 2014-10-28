@@ -1,0 +1,2 @@
+#define LOGIN_FAILURE 0
+#define LOGIN_SUCCESS 1
