@@ -1,18 +1,18 @@
 CC=gcc
-CFLAGS=-Wall -flto -O2
+CFLAGS=-Wall -flto -O2 -s
 CLIBS=-ldl
 SRC=main.c
 OBJ=$(SRC:.c=.o)
 EXE=brute
 MODSRC=test.c
 MODSO=$(MODSRC:.c=.so)
-MODFLAGS=-Wall -O2 -fPIC -shared
+MODFLAGS=-Wall -O2 -fPIC -shared -s
 
 all: MODS $(SRC) $(EXE)
-	strip $(EXE)
 
 debug: CFLAGS=-Wall -g
-debug: $(SRC) $(EXE)
+debug: MODFLAGS=-Wall -g -fPIC -shared
+debug: MODS $(SRC) $(EXE)
 
 $(EXE): $(OBJ)
 	$(CC) $(CFLAGS) $(CLIBS) $(OBJ) -o $@
